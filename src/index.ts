@@ -1,12 +1,13 @@
-const COMMENTS_URL = 'https://jsonplaceholder.typicode.com/comments';
+import fetch from 'node-fetch';
+import { Response } from 'node-fetch';
 
-const getData = (url) => {
-  // Your code here...
+const COMMENTS_URL = 'https://jsonplaceholder.typicode.com/comments1';
+
+const getData = (url: string): Promise<any> => {
+  return fetch(url).then((response: Response) => response.json());
 };
 
-getData(COMMENTS_URL).then((data) => {
-  // Your code here...
-});
+getData(COMMENTS_URL).then((data) => {});
 
 /**
  * ID: 1, Email: Eliseo...
