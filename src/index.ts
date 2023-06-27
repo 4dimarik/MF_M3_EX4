@@ -20,7 +20,22 @@ function isDataNotEmpty(obj: object): obj is Comment[] {
   return Object.keys(obj).length > 0;
 }
 
-getData(COMMENTS_URL).then((data: object) => {});
+getData(COMMENTS_URL).then((data: object): void => {
+  if (isDataNotEmpty(data)) {
+    data.forEach((comment: Comment): void => {
+      // получение массива ключей объекта Comment
+      let keys = Object.keys(comment) as (keyof Comment)[];
+      console.log(
+        // перебор ключей объекта Comment для склейки ключей и значений объекта в требуемую строку
+        keys.reduce(
+          (sum: string, key: keyof Comment) =>
+            sum + [key, comment[key]].join(': ') + ', ',
+          ''
+        )
+      );
+    });
+  }
+});
 
 /**
  * ID: 1, Email: Eliseo...
