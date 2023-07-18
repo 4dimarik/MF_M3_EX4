@@ -1,3 +1,4 @@
+import { log } from 'console';
 import fetch from 'node-fetch';
 import { Response } from 'node-fetch';
 
@@ -11,8 +12,10 @@ interface Comment {
 
 const COMMENTS_URL = 'https://jsonplaceholder.typicode.com/comments';
 
-const getData = (url: string): Promise<any> => {
-  return fetch(url).then((response: Response) => response.json());
+const getData = (url: string): Promise<object> => {
+  return fetch(url).then((response: Response) =>
+    response.json()
+  ) as Promise<object>;
 };
 
 // функция проверяет что данные получены
